@@ -47,15 +47,15 @@ public class SystemAdmin extends JFrame implements ActionListener {
         systemadminsearchbutton = new JButton("Search");
         systemadminsearchbutton.setForeground(new Color(0, 153, 153));
         systemadminsearchbutton.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
-        systemadminsearchbutton.setBounds(111, 322, 119, 35);
+        systemadminsearchbutton.setBounds(111, 444, 119, 35);
         systemadminsearchframepanel.add(systemadminsearchbutton);
         JLabel labelEmployeeID = new JLabel("Employee ID :");
-        labelEmployeeID.setBounds(10, 221, 191, 34);
+        labelEmployeeID.setBounds(27, 347, 191, 34);
         systemadminsearchframepanel.add(labelEmployeeID);
         labelEmployeeID.setForeground(Color.WHITE);
         labelEmployeeID.setFont(new Font("Sitka Subheading", Font.PLAIN, 30));
         systemadminemployeeIDtextfield = new JTextField();
-        systemadminemployeeIDtextfield.setBounds(10, 279, 210, 28);
+        systemadminemployeeIDtextfield.setBounds(20, 393, 210, 28);
         systemadminsearchframepanel.add(systemadminemployeeIDtextfield);
         systemadminemployeeIDtextfield.setText("Employee  ID");
         systemadminemployeeIDtextfield.setForeground(new Color(0, 102, 153));
@@ -92,7 +92,7 @@ public class SystemAdmin extends JFrame implements ActionListener {
 
 
         systemadminscrollpane=new JScrollPane(systemadminemployeetable);
-        systemadminscrollpane.setBounds(248, 11, 470, 415);
+        systemadminscrollpane.setBounds(245, 21, 475, 405);
         systemadmincreateIDpanel.add(systemadminscrollpane);
         systemadminsearchbutton.addActionListener(this);
         systemadminlogoutbutton.addActionListener(this);

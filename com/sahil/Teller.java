@@ -38,9 +38,6 @@ public class Teller extends JFrame {
         setResizable(false);
         setBounds(100, 100, 723, 498);
 
-
-
-
         //panel1 and panel2 is made to separate the frame and required components are inserted
         JPanel telpanel1 = new JPanel();
         telpanel1.setSize(new Dimension(200,800));

@@ -9,25 +9,6 @@ public class Login extends JFrame
     public JPasswordField loginpasswordtextfield;
     public JButton loginexitbtn1;
     public JButton loginbtn1;
-    public static void main(String[] args) {
-        try {
-
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        }
-        catch (Exception e) {
-            System.out.println("Look and Feel not set");
-        }
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Login frame = new Login();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
     public Login() {
         setAlwaysOnTop(true);
         setTitle("LogIn");
