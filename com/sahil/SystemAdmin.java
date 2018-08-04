@@ -6,10 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 public class SystemAdmin extends JFrame implements ActionListener {
 
@@ -24,6 +21,7 @@ public class SystemAdmin extends JFrame implements ActionListener {
     private JButton systemadminlogoutbutton;
     private JButton systemadmincreateusernamebutton;
     private JButton systemadminsearchbutton;
+    private JScrollPane systemadminscrollpane;
     public SystemAdmin() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 745, 541);
@@ -80,9 +78,22 @@ public class SystemAdmin extends JFrame implements ActionListener {
         systemadmincreateIDpanel.add(systemadmincreateusernamebutton);
         systemadmincreateusernamebutton.setForeground(new Color(0, 102, 153));
         systemadmincreateusernamebutton.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 16));
-        systemadminemployeetable = new JTable();
-        systemadminemployeetable.setBounds(248, 11, 470, 415);
-        systemadmincreateIDpanel.add(systemadminemployeetable);
+        String coloumns[]={"EmlpoyeeID","EmployeeUsername","EmployeePassword","EmlpoyeeName","EmployeeCategory","EmployeeAddress","EmployeeContacNum"};
+        Object [][]data={};
+        systemadminemployeetable = new JTable(data,coloumns);
+        systemadminemployeetable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        systemadminemployeetable.getColumnModel().getColumn(0).setWidth(100);
+        systemadminemployeetable.getColumnModel().getColumn(1).setWidth(200);
+        systemadminemployeetable.getColumnModel().getColumn(2).setWidth(350);
+        systemadminemployeetable.getColumnModel().getColumn(3).setWidth(200);
+        systemadminemployeetable.getColumnModel().getColumn(4).setWidth(200);
+        systemadminemployeetable.getColumnModel().getColumn(5).setWidth(200);
+        systemadminemployeetable.getColumnModel().getColumn(6).setWidth(200);
+
+
+        systemadminscrollpane=new JScrollPane(systemadminemployeetable);
+        systemadminscrollpane.setBounds(248, 11, 470, 415);
+        systemadmincreateIDpanel.add(systemadminscrollpane);
         systemadminsearchbutton.addActionListener(this);
         systemadminlogoutbutton.addActionListener(this);
         systemadmincreateusernamebutton.addActionListener(this);
@@ -134,10 +145,16 @@ public class SystemAdmin extends JFrame implements ActionListener {
                 int tempemployeeID = Integer.parseInt(systemadminemployeeIDtextfield.getText());
                 PreparedStatement pst = con.prepareStatement("Select * from employeelogintable where EmployeeID='" + tempemployeeID + "'");
                 ResultSet rst1 = pst.executeQuery();
+                if(!rst1.isBeforeFirst()){
+                    JOptionPane.showMessageDialog(SystemAdmin.this, String.format("No Employee Found For The EmployeeID Entered. Enter EmployeeID Again!"),"Database Error",JOptionPane.ERROR_MESSAGE);
+                    systemadminemployeeIDtextfield.setText("");
+                    systemadminemployeeIDtextfield.requestFocus();
+                    showallintable();
+                } else {
                     systemadminemployeetable.setModel(DbUtils.resultSetToTableModel(rst1));
                     systemadminemployeeIDtextfield.setText("");
                     systemadminemployeeIDtextfield.requestFocus();
-
+                    }
                 }
                 catch (Exception ep)
                 {

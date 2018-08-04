@@ -37,7 +37,8 @@ public class CustomerService extends JFrame implements ActionListener {
     private JTextField deleteclientidtextfield;
     private JTable deletecustomerinfotable;
     private JTable detailtable;
-
+    private JScrollPane deletetablescrollpane;
+    private JScrollPane detailtablescrollpane;
     //create frame and design in it
     public CustomerService() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,7 +47,7 @@ public class CustomerService extends JFrame implements ActionListener {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
-
+        setTitle("Customer Service");
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.setBounds(6, 6, 714, 489);
         contentPane.add(tabbedPane);
@@ -54,7 +55,6 @@ public class CustomerService extends JFrame implements ActionListener {
         JPanel CreatePanel = new JPanel();
         tabbedPane.addTab("Create", null, CreatePanel, null);
         CreatePanel.setLayout(null);
-
 
         //createframepanel design
         createFramePanel = new JPanel();
@@ -197,7 +197,7 @@ public class CustomerService extends JFrame implements ActionListener {
 
         JLabel createregisterclientslabel = new JLabel("Register Client");
         createregisterclientslabel.setForeground(Color.WHITE);
-        createregisterclientslabel.setFont(new Font("Tahoma", Font.ITALIC, 59));
+        createregisterclientslabel.setFont(new Font("Sylfaen", Font.PLAIN, 60));
         createregisterclientslabel.setBounds(144, 22, 398, 91);
         createFramePanel.add(createregisterclientslabel);
 
@@ -232,9 +232,27 @@ public class CustomerService extends JFrame implements ActionListener {
         separator_3.setBounds(235, 393, 474, 2);
         deleteFramePanel.add(separator_3);
 
-        deletecustomerinfotable = new JTable();
-        deletecustomerinfotable.setBounds(241, 5, 462, 385);
-        deleteFramePanel.add(deletecustomerinfotable);
+
+        String[] columns={"Account Number","First Name","Middle Name","Last Name","Date of Birth","District","City","Ward","Citizenship Number","Contact Number","isDeleted","Amount"};
+        Object [][] data={};
+        deletecustomerinfotable = new JTable(data,columns);
+        deletetablescrollpane = new JScrollPane(deletecustomerinfotable);
+        deletetablescrollpane.setBounds(241, 5, 462, 385);
+        deleteFramePanel.add(deletetablescrollpane);
+        deletecustomerinfotable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        deletecustomerinfotable.getColumnModel().getColumn(0).setPreferredWidth(100);
+        deletecustomerinfotable.getColumnModel().getColumn(1).setPreferredWidth(200);
+        deletecustomerinfotable.getColumnModel().getColumn(2).setPreferredWidth(200);
+        deletecustomerinfotable.getColumnModel().getColumn(3).setPreferredWidth(200);
+        deletecustomerinfotable.getColumnModel().getColumn(4).setPreferredWidth(200);
+        deletecustomerinfotable.getColumnModel().getColumn(5).setPreferredWidth(200);
+        deletecustomerinfotable.getColumnModel().getColumn(6).setPreferredWidth(200);
+        deletecustomerinfotable.getColumnModel().getColumn(7).setPreferredWidth(200);
+        deletecustomerinfotable.getColumnModel().getColumn(8).setPreferredWidth(200);
+        deletecustomerinfotable.getColumnModel().getColumn(9).setPreferredWidth(200);
+        deletecustomerinfotable.getColumnModel().getColumn(10).setPreferredWidth(200);
+
+
         deleteFrameSubPanel = new JPanel();
         deleteFrameSubPanel.setBackground(new Color(0, 153, 153));
         deleteFrameSubPanel.setBounds(0, 0, 235, 459);
@@ -285,10 +303,22 @@ public class CustomerService extends JFrame implements ActionListener {
         JPanel clientDetailPanel = new JPanel();
         tabbedPane.addTab("Client Detail", null, clientDetailPanel, null);
         clientDetailPanel.setLayout(null);
-
-        detailtable = new JTable();
-        detailtable.setBounds(0, 6, 708, 453);
-        clientDetailPanel.add(detailtable);
+        detailtable = new JTable(data,columns);
+        detailtable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        detailtable.getColumnModel().getColumn(0).setPreferredWidth(100);
+        detailtable.getColumnModel().getColumn(1).setPreferredWidth(200);
+        detailtable.getColumnModel().getColumn(2).setPreferredWidth(800);
+        detailtable.getColumnModel().getColumn(3).setPreferredWidth(200);
+        detailtable.getColumnModel().getColumn(4).setPreferredWidth(200);
+        detailtable.getColumnModel().getColumn(5).setPreferredWidth(200);
+        detailtable.getColumnModel().getColumn(6).setPreferredWidth(200);
+        detailtable.getColumnModel().getColumn(7).setPreferredWidth(200);
+        detailtable.getColumnModel().getColumn(8).setPreferredWidth(200);
+        detailtable.getColumnModel().getColumn(9).setPreferredWidth(200);
+        detailtable.getColumnModel().getColumn(10).setPreferredWidth(200);
+        detailtablescrollpane=new JScrollPane(detailtable);
+        detailtablescrollpane.setBounds(0, 6, 708, 453);
+        clientDetailPanel.add(detailtablescrollpane);
         btnBack.addActionListener(this);
         createbackbutton.addActionListener(this);
         btnSearch.addActionListener(this);
@@ -352,18 +382,27 @@ public class CustomerService extends JFrame implements ActionListener {
             pst=con.prepareStatement("SELECT * FROM `clientpersonalinfo` WHERE AccountNum='"+ValToSearch+"' AND isdeleted='0'");
             rst=pst.executeQuery();
             Users user;
-            while (rst.next()) {
-                user = new Users(
-                        rst.getInt("AccountNum"),
-                        rst.getString("ClientFirstName"),
-                        rst.getString("ClientMiddleName"),
-                        rst.getString("ClientLastName"),
-                        rst.getString("ClientSex"),
-                        rst.getInt("ClientCitizenshipNum"),
-                        rst.getInt("ClientContactNum"),
-                        rst.getBoolean("isDeleted"),
-                        rst.getDouble("ClientAmount"));
-                userList.add(user);
+            if(!rst.isBeforeFirst())
+            {
+                JOptionPane.showMessageDialog(CustomerService.this, String.format("No Client Found For The Account Number Entered. Enter Account Number Again!"),"Database Error",JOptionPane.ERROR_MESSAGE);
+                deleteclientidtextfield.setText("");
+                deleteclientidtextfield.requestFocus();
+                showallintable();
+            }
+            else {
+                while (rst.next()) {
+                    user = new Users(
+                            rst.getInt("AccountNum"),
+                            rst.getString("ClientFirstName"),
+                            rst.getString("ClientMiddleName"),
+                            rst.getString("ClientLastName"),
+                            rst.getString("ClientSex"),
+                            rst.getInt("ClientCitizenshipNum"),
+                            rst.getInt("ClientContactNum"),
+                            rst.getBoolean("isDeleted"),
+                            rst.getDouble("ClientAmount"));
+                    userList.add(user);
+                }
             }
 
         }
