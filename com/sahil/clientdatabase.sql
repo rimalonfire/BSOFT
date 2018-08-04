@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2018 at 01:05 PM
+-- Generation Time: Aug 04, 2018 at 11:29 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `clientpersonalinfo` (
-  `ClientID` int(20) NOT NULL,
+  `AccountNum` int(20) NOT NULL,
   `ClientFirstName` text NOT NULL,
   `ClientMiddleName` text NOT NULL,
   `ClientLastName` text NOT NULL,
@@ -38,21 +38,21 @@ CREATE TABLE `clientpersonalinfo` (
   `ClientWardNum` int(11) NOT NULL,
   `ClientCitizenshipNum` bigint(25) NOT NULL,
   `ClientContactNum` bigint(15) NOT NULL,
-  `isDeleted` tinyint(1) NOT NULL
+  `isDeleted` tinyint(1) NOT NULL,
+  `ClientAmount` double NOT NULL DEFAULT '300'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `clientpersonalinfo`
 --
 
-INSERT INTO `clientpersonalinfo` (`ClientID`, `ClientFirstName`, `ClientMiddleName`, `ClientLastName`, `ClientDateofBirth`, `ClientSex`, `ClientDistrict`, `ClientCity`, `ClientWardNum`, `ClientCitizenshipNum`, `ClientContactNum`, `isDeleted`) VALUES
-(100, 'Admin', 'Admin', 'Admin', '2016-01-01', 'Admin', 'Admin', 'Admin', 100, 100, 100, 0),
-(111, 'Firstname', 'Middlename*', 'Lastname', '2018-07-22', 'Male', 'District', 'City', 0, 0, 0, 1),
-(112, 'FirstName', 'Middlename*', 'Lastname', '2018-07-25', 'Male', 'District', 'City', 12, 15, 16, 1),
-(113, 'Firstname', 'Middlename*', 'Lastname', '2018-07-31', 'Male', 'District', 'City', 0, 0, 0, 1),
-(114, 'Firstname', 'Middlename*', 'Lastname', '2018-07-31', 'Male', 'District', 'City', 0, 0, 0, 1),
-(115, 'Firstname', 'Middlename*', 'Lastname', '2018-08-01', 'Male', 'District', 'City', 0, 0, 0, 1),
-(116, 'Firstname', 'Middlename*', 'Lastname', '2018-08-01', 'Male', 'District', 'City', 0, 0, 0, 0);
+INSERT INTO `clientpersonalinfo` (`AccountNum`, `ClientFirstName`, `ClientMiddleName`, `ClientLastName`, `ClientDateofBirth`, `ClientSex`, `ClientDistrict`, `ClientCity`, `ClientWardNum`, `ClientCitizenshipNum`, `ClientContactNum`, `isDeleted`, `ClientAmount`) VALUES
+(100, 'Admin', 'Admin', 'Admin', '2016-01-01', 'Admin', 'Admin', 'Admin', 100, 100, 100, 0, 230),
+(112, 'FirstName', 'Middlename*', 'Lastname', '2018-07-25', 'Male', 'District', 'City', 12, 15, 16, 1, 800),
+(113, 'Firstname', 'Middlename*', 'Lastname', '2018-08-04', 'Male', 'District', 'City', 0, 0, 0, 1, 300),
+(114, 'Firstname', 'Middlename*', 'Lastname', '2018-08-04', 'Male', 'District', 'City', 0, 0, 0, 0, 300),
+(115, 'Firstname', 'Middlename*', 'Lastname', '2018-08-04', 'Male', 'District', 'City', 0, 0, 0, 1, 300),
+(116, 'Firstname', 'Middlename*', 'Lastname', '2018-08-04', 'Female', 'District', 'City', 0, 0, 0, 1, 300);
 
 --
 -- Indexes for dumped tables
@@ -62,7 +62,7 @@ INSERT INTO `clientpersonalinfo` (`ClientID`, `ClientFirstName`, `ClientMiddleNa
 -- Indexes for table `clientpersonalinfo`
 --
 ALTER TABLE `clientpersonalinfo`
-  ADD PRIMARY KEY (`ClientID`);
+  ADD PRIMARY KEY (`AccountNum`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -72,7 +72,7 @@ ALTER TABLE `clientpersonalinfo`
 -- AUTO_INCREMENT for table `clientpersonalinfo`
 --
 ALTER TABLE `clientpersonalinfo`
-  MODIFY `ClientID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `AccountNum` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
