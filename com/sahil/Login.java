@@ -1,5 +1,6 @@
 package com.sahil;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -11,89 +12,103 @@ public class Login extends JFrame
     public JButton loginbtn1;
     public Login() {
         setAlwaysOnTop(true);
-        setTitle("LogIn");
+        setTitle("Log In");
         setResizable(false);
-        getContentPane().setBackground(new Color(51, 102, 153));
+        getContentPane().setBackground(new Color(0, 102, 153));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 700, 490);
+        setBounds(100, 100, 723, 498);
         getContentPane().setLayout(null);
         JPanel subPanel = new JPanel();
         subPanel.setBackground(new Color(0, 153, 153));
-        subPanel.setBounds(0, 0, 192, 458);
+        subPanel.setBounds(0, 0, 192, 469);
         getContentPane().add(subPanel);
         subPanel.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("New label");
-        lblNewLabel.setIcon(new ImageIcon("B:\\B-Soft Source\\loginphoto.jpg"));
-        lblNewLabel.setBounds(10, 84, 125, 152);
-        subPanel.add(lblNewLabel);
+        JLabel logoBsoftLabel = new JLabel("");
+        logoBsoftLabel.setIcon(new ImageIcon("B:\\BSoft\\src\\com\\sahil\\BSOFTLogo.png"));
+        logoBsoftLabel.setBounds(7, 144, 156, 152);
+        subPanel.add(logoBsoftLabel);
 
-        JLabel lblBsoft = new JLabel("Bsoft");
+        JLabel lblBsoft = new JLabel("BSOFT");
+        lblBsoft.setHorizontalAlignment(SwingConstants.CENTER);
         lblBsoft.setForeground(new Color(255, 255, 255));
-        lblBsoft.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblBsoft.setBounds(38, 247, 97, 33);
+        lblBsoft.setFont(new Font("Sylfaen", Font.PLAIN, 50));
+        lblBsoft.setBounds(6, 36, 157, 55);
         subPanel.add(lblBsoft);
 
         JLabel lblLogIn = new JLabel("Log In");
         lblLogIn.setForeground(new Color(255, 255, 255));
         lblLogIn.setFont(new Font("Sylfaen", Font.PLAIN, 50));
-        lblLogIn.setBounds(365, 60, 171, 61);
+        lblLogIn.setBounds(359, 36, 171, 61);
         getContentPane().add(lblLogIn);
+        JPanel secondSubPanel = new JPanel();
+        secondSubPanel.setBorder(new LineBorder(new Color(0, 153, 153), 10));
+        secondSubPanel.setBackground(new Color(255, 255, 255));
+        secondSubPanel.setBounds(249, 121, 433, 293);
+        getContentPane().add(secondSubPanel);
+        secondSubPanel.setLayout(null);
+
+        JLabel lblUsername = new JLabel("Username :");
+        lblUsername.setForeground(new Color(0, 102, 153));
+        lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 27));
+        lblUsername.setBounds(21, 26, 189, 33);
+        secondSubPanel.add(lblUsername);
 
         loginusernametextfield = new JTextField();
-        loginusernametextfield.setFont(new Font("Tahoma", Font.ITALIC, 14));
+        loginusernametextfield.setFont(new Font("Sylfaen", Font.ITALIC, 23));
         loginusernametextfield.setText("");
-        loginusernametextfield.setBackground(new Color(51, 102, 153));
-        loginusernametextfield.setForeground(new Color(255, 255, 255));
-        loginusernametextfield.setBounds(320, 190, 204, 18);
+        loginusernametextfield.setBackground(new Color(255, 255, 255));
+        loginusernametextfield.setForeground(new Color(0, 102, 153));
+        loginusernametextfield.setBounds(56, 66, 214, 26);
         loginusernametextfield.setBorder(null);
-        getContentPane().add(loginusernametextfield);
+        secondSubPanel.add(loginusernametextfield);
         loginusernametextfield.setColumns(10);
-        loginusernametextfield.hasFocus();
-
-        JLabel lblPassword = new JLabel("Password");
-        lblPassword.setForeground(Color.WHITE);
-        lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 24));
-        lblPassword.setBounds(313, 230, 155, 34);
-        getContentPane().add(lblPassword);
-
-        loginbtn1 = new JButton("LOGIN");
-        loginbtn1.setForeground(new Color(0, 102, 153));
-        loginbtn1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        loginbtn1.setBounds(370, 378, 100, 35);
-        getContentPane().add(loginbtn1);
-
-        loginexitbtn1 = new JButton("EXIT");
-        loginexitbtn1.setForeground(new Color(0, 102, 153));
-        loginexitbtn1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        loginexitbtn1.setBounds(494, 378, 100, 35);
-        getContentPane().add(loginexitbtn1);
-
-        JSeparator separator = new JSeparator();
-        separator.setBounds(313, 210, 225, 2);
-        getContentPane().add(separator);
-
-        JSeparator separator_1 = new JSeparator();
-        separator_1.setBounds(313, 290, 225, 2);
-        getContentPane().add(separator_1);
-
-        JLabel lblEmmployId = new JLabel("Username");
-        lblEmmployId.setForeground(Color.WHITE);
-        lblEmmployId.setFont(new Font("Tahoma", Font.PLAIN, 24));
-        lblEmmployId.setBounds(307, 150, 161, 34);
-        getContentPane().add(lblEmmployId);
 
         loginpasswordtextfield = new JPasswordField();
-        loginpasswordtextfield.setBackground(new Color(51, 102, 153));
+        loginpasswordtextfield.setBackground(new Color(255, 255, 255));
         loginpasswordtextfield.setToolTipText("");
         loginpasswordtextfield.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        loginpasswordtextfield.setForeground(new Color(255, 255, 255));
-        loginpasswordtextfield.setBounds(320, 270, 225, 20);
+        loginpasswordtextfield.setForeground(new Color(0, 102, 153));
+        loginpasswordtextfield.setBounds(65, 160, 225, 26);
         loginpasswordtextfield.setText("");
         loginpasswordtextfield.setBorder(null);
-        getContentPane().add(loginpasswordtextfield);
+        secondSubPanel.add(loginpasswordtextfield);
+
+        JLabel lblPassword = new JLabel("Password :");
+        lblPassword.setForeground(new Color(0, 102, 153));
+        lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 27));
+        lblPassword.setBounds(21, 115, 189, 33);
+        secondSubPanel.add(lblPassword);
+
+        JSeparator usernameSeparator = new JSeparator();
+        usernameSeparator.setBackground(new Color(0, 102, 153));
+        usernameSeparator.setBounds(56, 90, 214, 2);
+        secondSubPanel.add(usernameSeparator);
+
+        JSeparator passwordSeparator = new JSeparator();
+        passwordSeparator.setBackground(new Color(0, 102, 153));
+        passwordSeparator.setBounds(56, 184, 214, 2);
+        secondSubPanel.add(passwordSeparator);
+        loginbtn1=new JButton("LOGIN");
+        loginbtn1.setBounds(149, 231, 115, 33);
+        secondSubPanel.add(loginbtn1);
+        loginbtn1.setForeground(new Color(0, 102, 153));
+        loginbtn1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        loginexitbtn1 = new JButton("EXIT");
+        loginexitbtn1.setBounds(283, 231, 115, 33);
+        secondSubPanel.add(loginexitbtn1);
+
+        loginexitbtn1.setForeground(new Color(0, 102, 153));
+        loginexitbtn1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+        JLabel labelCopyright = new JLabel("Copyright © 2018 BSOFT. All rights reserved.");
+        labelCopyright.setForeground(Color.WHITE);
+        labelCopyright.setFont(new Font("Sylfaen", Font.PLAIN, 15));
+        labelCopyright.setBounds(330, 436, 305, 27);
+        getContentPane().add(labelCopyright);
         loginbtn1.addActionListener(this::actionPerformed);
         loginexitbtn1.addActionListener(this::actionPerformed);
+        loginpasswordtextfield.requestFocus(false);
     }
     public void actionPerformed(ActionEvent event) {
         String command = event.getActionCommand();

@@ -64,7 +64,6 @@ public class SplashScreen extends javax.swing.JFrame {
 
     }
 
-
     public static void main(String args[]) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         SplashScreen sc = new SplashScreen();
@@ -77,12 +76,13 @@ public class SplashScreen extends javax.swing.JFrame {
         });
         try {
             for(int i=0;i<=100;i++){
-                Thread.sleep(5);
+                Thread.sleep(10);
                 sc.setVisible(true);
                 sc.progressBar.setValue(i);
                 //    sc.percBar.setText(Integer.toString(i)+"%");
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
         sc.setVisible(false);
         lg.setVisible(true);
