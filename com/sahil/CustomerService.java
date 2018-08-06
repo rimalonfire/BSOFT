@@ -215,12 +215,14 @@ public class CustomerService extends JFrame implements ActionListener {
         createradioGroup = new ButtonGroup();
         createradioGroup.add(createmaleradiobutton);
         createradioGroup.add(createfemaleradiobutton);
+
         //deletepanel design
         JPanel DeletePanel = new JPanel();
         DeletePanel.setLayout(null);
         tabbedPane.addTab("Delete", null, DeletePanel, null);
         //createframepanel design
         //createframepanel design
+
         deleteFramePanel = new JPanel();
         deleteFramePanel.setVisible(true);
         deleteFramePanel.setBounds(0, 0, 709, 459);
@@ -269,28 +271,28 @@ public class CustomerService extends JFrame implements ActionListener {
         deleteFrameSubPanel.add(separator);
 
 
-        JLabel lblCustomerName_1 = new JLabel("Customer ID :");
-        lblCustomerName_1.setBounds(11, 212, 191, 34);
-        deleteFrameSubPanel.add(lblCustomerName_1);
-        lblCustomerName_1.setForeground(Color.WHITE);
-        lblCustomerName_1.setFont(new Font("Sitka Subheading", Font.PLAIN, 30));
+        JLabel customerserviceaccountnumberlabel = new JLabel("Account Number:");
+        customerserviceaccountnumberlabel.setBounds(10, 284, 191, 34);
+        deleteFrameSubPanel.add(customerserviceaccountnumberlabel);
+        customerserviceaccountnumberlabel.setForeground(Color.WHITE);
+        customerserviceaccountnumberlabel.setFont(new Font("Sitka Subheading", Font.PLAIN, 25));
 
         deleteclientidtextfield = new JTextField();
-        deleteclientidtextfield.setBounds(6, 258, 219, 28);
+        deleteclientidtextfield.setBounds(12, 331, 219, 28);
         deleteFrameSubPanel.add(deleteclientidtextfield);
-        deleteclientidtextfield.setText("Customer ID");
+        deleteclientidtextfield.setText("Account N.O");
         deleteclientidtextfield.setForeground(new Color(0, 102, 153));
         deleteclientidtextfield.setFont(new Font("Tahoma", Font.ITALIC, 16));
         deleteclientidtextfield.setColumns(10);
 
         JButton btnSearch = new JButton("Search");
-        btnSearch.setBounds(6, 335, 107, 35);
+        btnSearch.setBounds(10, 400, 107, 35);
         deleteFrameSubPanel.add(btnSearch);
         btnSearch.setForeground(new Color(0, 153, 153));
         btnSearch.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
 
         JButton btnBack = new JButton("Back");
-        btnBack.setBounds(125, 335, 93, 35);
+        btnBack.setBounds(144, 400, 93, 35);
         deleteFrameSubPanel.add(btnBack);
         btnBack.setForeground(new Color(0, 153, 153));
         btnBack.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
