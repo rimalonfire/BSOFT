@@ -55,10 +55,10 @@ public class Login extends JFrame
         secondSubPanel.add(lblUsername);
 
         loginusernametextfield = new JTextField();
-        loginusernametextfield.setFont(new Font("Sylfaen", Font.ITALIC, 23));
+        loginusernametextfield.setFont(new Font("Sylfaen", Font.PLAIN, 23));
         loginusernametextfield.setText("");
         loginusernametextfield.setBackground(new Color(255, 255, 255));
-        loginusernametextfield.setForeground(new Color(0, 102, 153));
+        loginusernametextfield.setForeground(new Color(52, 73, 94));
         loginusernametextfield.setBounds(56, 66, 214, 26);
         loginusernametextfield.setBorder(null);
         secondSubPanel.add(loginusernametextfield);
@@ -68,7 +68,7 @@ public class Login extends JFrame
         loginpasswordtextfield.setBackground(new Color(255, 255, 255));
         loginpasswordtextfield.setToolTipText("");
         loginpasswordtextfield.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        loginpasswordtextfield.setForeground(new Color(0, 102, 153));
+        loginpasswordtextfield.setForeground(new Color(52, 73, 94));
         loginpasswordtextfield.setBounds(65, 160, 225, 26);
         loginpasswordtextfield.setText("");
         loginpasswordtextfield.setBorder(null);

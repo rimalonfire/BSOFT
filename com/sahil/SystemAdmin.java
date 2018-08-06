@@ -56,11 +56,12 @@ public class SystemAdmin extends JFrame implements ActionListener {
         systemadminsearchframepanel.add(labelEmployeeID);
         labelEmployeeID.setForeground(Color.WHITE);
         labelEmployeeID.setFont(new Font("Sitka Subheading", Font.PLAIN, 30));
+
         systemadminemployeeIDtextfield = new JTextField();
         systemadminemployeeIDtextfield.setBounds(20, 393, 210, 28);
         systemadminsearchframepanel.add(systemadminemployeeIDtextfield);
         systemadminemployeeIDtextfield.setText("Employee  ID");
-        systemadminemployeeIDtextfield.setForeground(new Color(0, 102, 153));
+        systemadminemployeeIDtextfield.setForeground(new Color(52, 73, 94));
         systemadminemployeeIDtextfield.setFont(new Font("Tahoma", Font.ITALIC, 16));
         systemadminemployeeIDtextfield.setColumns(10);
         systemadminlogo=new JLabel("");

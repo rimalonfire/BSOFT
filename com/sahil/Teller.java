@@ -1,7 +1,8 @@
 package com.sahil;
 
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,17 +13,20 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 public class Teller extends JFrame {
-    public JTextField accountNumberField;
-    private JLabel lblNewLabel_1;
-    private JLabel lblNewLabel_3;
-    private JButton EnterBtn;
-    private JTextField firstField;
-    private JTextField middleField;
-    private JTextField lastField;
+    private JPanel FramePanel;
+    private  JPanel ClientInfoPanel ;
+    private JTable tellerclientinfotable;
+    private JPanel clientinfopanel;
+    private JSeparator tableSeperator;
+    private JButton tellertranscationbutton;
+    private JLabel lblNewLabel;
+    private JTextField tellerfirstnametextfield;
+    private JTextField tellermiddlenametextfield;
+    private JTextField tellerlastnametextfield;
+    private JTextField telleraccountnumbertextfield;
     public  Long acc_no;
-
-    public Teller() {
-
+    public Teller()
+    {
         setAlwaysOnTop(true);
         itscustomerdetailframe();
     }
@@ -31,204 +35,177 @@ public class Teller extends JFrame {
         return acc_no;
     }
     public void itscustomerdetailframe() {
-        //code for frame
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("logIn");
-        setUndecorated(true);
-        setResizable(false);
-        setBounds(100, 100, 723, 498);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 745, 541);
+        FramePanel = new JPanel();
+        FramePanel.setLayout(null);
+        setContentPane(FramePanel);
+        FramePanel.setLayout(null);
+        ClientInfoPanel = new JPanel();
 
-        //panel1 and panel2 is made to separate the frame and required components are inserted
-        JPanel telpanel1 = new JPanel();
-        telpanel1.setSize(new Dimension(200,800));
+        FramePanel.add(ClientInfoPanel);
+        ClientInfoPanel.setLayout(null);
+        ClientInfoPanel.setBounds(0, 0, 723, 541);
+        ClientInfoPanel.setBackground(new Color(0, 102, 153));
 
-        telpanel1.setBackground(new Color(0, 153, 153));
-        getContentPane().add(telpanel1);
-        telpanel1.setLayout(null);
+        clientinfopanel = new JPanel();
+        clientinfopanel.setBackground(new Color(0, 153, 153));
+        clientinfopanel.setBounds(0, 0, 236, 501);
+        ClientInfoPanel.add(clientinfopanel);
+        clientinfopanel.setLayout(null);
 
-        JPanel telpanel2 = new JPanel();
-        telpanel2.setBackground(new Color(0, 102, 153));
-        telpanel2.setLayout(null);
-        getContentPane().add(telpanel2);
+        JButton searchBtn = new JButton("Search");
 
-        JLabel telicon = new JLabel();
-        telicon.setIcon(new ImageIcon("C:\\Users\\adarsha\\Desktop\\LOGOTELLER.png"));
-        telicon.setBounds(10, 271, 180, 185);
-        telpanel1.add(telicon);
+        searchBtn.setForeground(new Color(0, 153, 153));
+        searchBtn.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
+        searchBtn.setBounds(111, 444, 119, 35);
+        clientinfopanel.add(searchBtn);
 
+        JLabel labelEmployeeID = new JLabel(" Enter Client Info");
+        labelEmployeeID.setBounds(6, 207, 191, 34);
+        clientinfopanel.add(labelEmployeeID);
+        labelEmployeeID.setForeground(Color.WHITE);
+        labelEmployeeID.setFont(new Font("Sitka Subheading", Font.PLAIN, 25));
 
+        lblNewLabel = new JLabel("");
+        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        lblNewLabel.setIcon(new ImageIcon("B:\\BSoft\\src\\com\\sahil\\BSOFTLogo.png"));
+        lblNewLabel.setBounds(38, 23, 146, 149);
+        clientinfopanel.add(lblNewLabel);
 
-        JLabel tellabel1 =new JLabel("CUSTOMER DETAILS", SwingConstants.CENTER);
-        tellabel1.setForeground(Color.WHITE);
-        tellabel1.setFont(new Font("Serif", Font.BOLD,30));
-        telpanel2.add(tellabel1);
+        tellerfirstnametextfield = new JTextField();
+        tellerfirstnametextfield.setText(" First name");
+        tellerfirstnametextfield.setForeground(new Color(0, 102, 51));
+        tellerfirstnametextfield.setFont(new Font("Tahoma", Font.ITALIC, 13));
+        tellerfirstnametextfield.setColumns(10);
+        tellerfirstnametextfield.setBorder(null);
+        tellerfirstnametextfield.setBackground(new Color(255, 255, 255));
+        tellerfirstnametextfield.setBounds(16, 253, 214, 35);
+        clientinfopanel.add(tellerfirstnametextfield);
 
-        lblNewLabel_1 = new JLabel("CUSTOMER DETAILS");
-        lblNewLabel_1.setForeground(Color.WHITE);
-        lblNewLabel_1.setFont(new Font("Sylfaen", Font.BOLD, 40));
-        lblNewLabel_1.setBounds(237, 48, 437, 58);
-        telpanel2.add(lblNewLabel_1);
+        tellermiddlenametextfield = new JTextField();
+        tellermiddlenametextfield.setHorizontalAlignment(SwingConstants.LEFT);
+        tellermiddlenametextfield.setText(" Middle name");
+        tellermiddlenametextfield.setForeground(new Color(0, 102, 102));
+        tellermiddlenametextfield.setFont(new Font("Tahoma", Font.ITALIC, 13));
+        tellermiddlenametextfield.setColumns(10);
+        tellermiddlenametextfield.setBorder(null);
+        tellermiddlenametextfield.setBackground(new Color(255, 255, 255));
+        tellermiddlenametextfield.setBounds(16, 298, 214, 35);
+        clientinfopanel.add(tellermiddlenametextfield);
 
-  /*
-txtEnterName.addFocusListener(new FocusListener() {
-
-	@Override
-	public void focusLost(FocusEvent arg0) {
-		if(txtEnterName.getText().equals("")) {
-			txtEnterName.setText("ENTER NAME");
-			}
-
-	}
-
-	@Override
-	public void focusGained(FocusEvent arg0) {
-		if(txtEnterName.getText().equals("ENTER NAME")) {
-			txtEnterName.setText("");
-			}
-
-	}
-});
-
-*/
-
+        tellerlastnametextfield = new JTextField();
+        tellerlastnametextfield.setText(" Last name");
+        tellerlastnametextfield.setForeground(new Color(0, 102, 51));
+        tellerlastnametextfield.setFont(new Font("Tahoma", Font.ITALIC, 12));
+        tellerlastnametextfield.setColumns(10);
+        tellerlastnametextfield.setBorder(null);
+        tellerlastnametextfield.setBackground(new Color(255, 255, 255));
+        tellerlastnametextfield.setBounds(16, 339, 214, 35);
+        clientinfopanel.add(tellerlastnametextfield);
 
         JLabel warningText = new JLabel("");
+        warningText.setForeground(Color.RED);
         warningText.setFont(new Font("Monotype Corsiva", Font.PLAIN, 15));
-        warningText.setForeground(Color.WHITE);
-        warningText.setBounds(237, 337, 218, 14);
-        telpanel2.add(warningText);
+        warningText.setBounds(12, 381, 218, 14);
+        clientinfopanel.add(warningText);
 
-        accountNumberField = new JTextField(20);
-        accountNumberField.setForeground(new Color(255, 255, 255));
-        accountNumberField.setBackground(new Color(0, 102, 153));
-        accountNumberField.addKeyListener(new KeyAdapter() {
+        telleraccountnumbertextfield = new JTextField();
+        telleraccountnumbertextfield.setText(" Account number");
+        telleraccountnumbertextfield.setForeground(new Color(0, 102, 51));
+        telleraccountnumbertextfield.setFont(new Font("Tahoma", Font.ITALIC, 12));
+        telleraccountnumbertextfield.setColumns(10);
+        telleraccountnumbertextfield.setBorder(null);
+        telleraccountnumbertextfield.setBackground(new Color(255, 255, 255));
+        telleraccountnumbertextfield.setBounds(16, 397, 214, 35);
+        clientinfopanel.add(telleraccountnumbertextfield);
+
+        tableSeperator = new JSeparator();
+        tableSeperator.setBounds(234, 438, 493, 2);
+        ClientInfoPanel.add(tableSeperator);
+
+        tellertranscationbutton = new JButton("Transaction");
+        tellertranscationbutton.setBounds(417, 450, 138, 35);
+        ClientInfoPanel.add(tellertranscationbutton);
+        tellertranscationbutton.setForeground(new Color(0, 102, 153));
+        tellertranscationbutton.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 16));
+
+        String[] columns= {
+                "AccountNum","ClientFirstName","ClientMiddleName","ClientLastName","CitizenshipNum","ClientAmount"
+        };
+        Object[][] data= {};
+        tellerclientinfotable = new JTable(data,columns);
+        tellerclientinfotable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tellerclientinfotable.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tellerclientinfotable.getColumnModel().getColumn(1).setPreferredWidth(300);
+        tellerclientinfotable.getColumnModel().getColumn(2).setPreferredWidth(300);
+        tellerclientinfotable.getColumnModel().getColumn(3).setPreferredWidth(300);
+        tellerclientinfotable.getColumnModel().getColumn(4).setPreferredWidth(300);
+        tellerclientinfotable.getColumnModel().getColumn(5).setPreferredWidth(300);
+
+        JScrollPane scrollPane = new JScrollPane(tellerclientinfotable);
+        scrollPane.setBounds(248, 21, 455, 405);
+        ClientInfoPanel.add(scrollPane);
+        JButton ExitButton = new JButton("Log Out");
+        ExitButton.setForeground(new Color(0, 102, 153));
+        ExitButton.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
+        ExitButton.setBounds(572, 452, 119, 35);
+        ClientInfoPanel.add(ExitButton);
+        telleraccountnumbertextfield.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent eee) {
                 char  c= eee.getKeyChar();
                 if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || c==KeyEvent.VK_DELETE )) {
                     eee.consume();
-                    warningText.setText("****Please enter the numeric value***");
+                    warningText.setText("** Enter the numeric value **");
                 }
                 if((Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || c==KeyEvent.VK_DELETE )) {
                     warningText.setText("");
                 }
             }
         });
-        accountNumberField.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 17));
-        //accountNumber.setText("ENTER ACC NUM");
-        accountNumberField.setBounds(337, 363, 247, 37);
-        accountNumberField.setBorder(new LineBorder(new Color(255, 255, 255)));
-        telpanel2.add(accountNumberField);
-        accountNumberField.setColumns(10);
-
-
-
-
-
-        lblNewLabel_3 = new JLabel("ACC. NUM:");
-        lblNewLabel_3.setFont(new Font("Sylfaen", Font.PLAIN, 22));
-        lblNewLabel_3.setForeground(Color.WHITE);
-        lblNewLabel_3.setBounds(204, 370, 121, 26);
-        telpanel2.add(lblNewLabel_3);
-
-        EnterBtn = new JButton("ENTER");
-        EnterBtn.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-        EnterBtn.setForeground(new Color(0, 102, 153));
-        EnterBtn.setBackground(Color.LIGHT_GRAY);
-        EnterBtn.setBounds(329, 419, 109, 37);
-        telpanel2.add(EnterBtn);
-
-        firstField = new JTextField();
-        firstField.setForeground(new Color(255, 255, 255));
-        firstField.setFont(new Font("Segoe UI Semilight", Font.ITALIC, 17));
-        firstField.setBackground(new Color(0, 102, 153));
-        firstField.setBounds(337, 197, 247, 37);
-        firstField.setBorder(new LineBorder(new Color(255, 255, 255)));
-        telpanel2.add(firstField);
-        firstField.setColumns(10);
-
-        middleField = new JTextField();
-        middleField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 17));
-        middleField.setForeground(new Color(255, 255, 255));
-        middleField.setBackground(new Color(0, 102, 153));
-        middleField.setBorder(new LineBorder(new Color(255, 255, 255)));
-        middleField.setBounds(337, 248, 247, 37);
-        telpanel2.add(middleField);
-        middleField.setColumns(10);
-
-        lastField = new JTextField();
-        lastField.setFont(new Font("Segoe UI Semilight", Font.ITALIC, 17));
-        lastField.setForeground(new Color(255, 255, 255));
-        lastField.setBackground(new Color(0, 102, 153));
-        lastField.setBorder(new LineBorder(new Color(255, 255, 255)));
-        lastField.setBounds(337, 297, 247, 37);
-        telpanel2.add(lastField);
-        lastField.setColumns(10);
-
-        JLabel firstNamelbl = new JLabel("First Name:");
-        firstNamelbl.setForeground(Color.WHITE);
-        firstNamelbl.setFont(new Font("Sylfaen", Font.PLAIN, 22));
-        firstNamelbl.setBounds(206, 207, 121, 26);
-        telpanel2.add(firstNamelbl);
-
-        JLabel middleNamelbl = new JLabel("Middle Name:");
-        middleNamelbl.setForeground(Color.WHITE);
-        middleNamelbl.setFont(new Font("Sylfaen", Font.PLAIN, 21));
-        middleNamelbl.setBounds(206, 257, 136, 28);
-        telpanel2.add(middleNamelbl);
-
-        JLabel lastNamelbl = new JLabel("Last Name:");
-        lastNamelbl.setForeground(Color.WHITE);
-        lastNamelbl.setFont(new Font("Sylfaen", Font.PLAIN, 22));
-        lastNamelbl.setBounds(206, 307, 121, 27);
-        telpanel2.add(lastNamelbl);
-
-        JButton ExitButton = new JButton("Exit");
         ExitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                dispose();
+                int result=JOptionPane.showConfirmDialog(Teller.this,"Are you sure? ","Confirm Logout",JOptionPane.OK_CANCEL_OPTION);
+                if(result==0)
+                {
+                    Login lg=new Login();
+                    lg.setVisible(true);
+                    setVisible(false);
+                }
             }
         });
-        ExitButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-        ExitButton.setForeground(new Color(0, 102, 153));
-        ExitButton.setBounds(484, 419, 125, 37);
-        telpanel2.add(ExitButton);
-
-        JLabel lblNewLabel_2 = new JLabel("Enter Customer's");
-        lblNewLabel_2.setBounds(217, 151, 252, 31);
-        telpanel2.add(lblNewLabel_2);
-        lblNewLabel_2.setFont(new Font("Sylfaen", Font.PLAIN, 30));
-        lblNewLabel_2.setForeground(Color.WHITE);
-
-
-
-
-        EnterBtn.addActionListener(new ActionListener() {
+        searchBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchindatabase();
+            }
+        });
+        tellertranscationbutton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ee) {
-                String firstname = firstField.getText();
-                String lastname= lastField.getText();
-                if ((accountNumberField.getText().equals("")) && firstname.equals("") && lastname.equals("")) {
+                String firstname = tellerfirstnametextfield.getText();
+                String lastname= tellerlastnametextfield.getText();
+                if ((telleraccountnumbertextfield.getText().equals("")) && firstname.equals("") && lastname.equals("")) {
                     JOptionPane.showMessageDialog(Teller.this, String.format("PLEASE ENTER NAME AND ACCOUNT NUMBER"));
-                    firstField.requestFocus();
-
+                    tellerfirstnametextfield.requestFocus();
                 }
-                else if (accountNumberField.getText().equals("")) {
+                else if (telleraccountnumbertextfield.getText().equals("")) {
                     JOptionPane.showMessageDialog(Teller.this, String.format("PLEASE ENTER ACCOUNT NUMBER"));
-                    accountNumberField.requestFocus();
+                    telleraccountnumbertextfield.requestFocus();
                 }
                 else if(firstname.equals("") && lastname.equals("")) {
                     JOptionPane.showMessageDialog(Teller.this, String.format("PLEASE ENTER THE NAME"));
-                    firstField.requestFocus();
+                    tellerfirstnametextfield.requestFocus();
                 }
                 else if(firstname.equals("")) {
                     JOptionPane.showMessageDialog(Teller.this, String.format("PLEASE ENTER FIRST NAME"));
-                    firstField.requestFocus();
+                    tellerfirstnametextfield.requestFocus();
                 }
                 else if(lastname.equals("")) {
                     JOptionPane.showMessageDialog(Teller.this, String.format("PLEASE ENTER LAST NAME"));
-                    lastField.requestFocus();
+                    tellerlastnametextfield.requestFocus();
                 }
 
                 else {
@@ -237,29 +214,72 @@ txtEnterName.addFocusListener(new FocusListener() {
                 }
             }
         });
-
-
         //verify account holder
-
-
-
-
-
-
         setVisible(true);
-
+        showallintable();
     }
-
-
-
+    public Connection getConnection()
+    {
+        Connection con=null;
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/clientdatabase", "root", "");
+        }
+        catch(Exception ep)
+        {
+            ep.printStackTrace();
+        }
+        return con;
+    }
+    public void showallintable()
+    {
+        try{
+            Connection connection=getConnection();
+            PreparedStatement pst=connection.prepareStatement("Select AccountNum,ClientFirstName,ClientMiddleName," +
+                    "ClientLastName,ClientCitizenshipNum,ClientAmount from clientpersonalinfo where isdeleted='0'");
+            ResultSet rst=pst.executeQuery();
+            tellerclientinfotable.setModel(DbUtils.resultSetToTableModel(rst));
+            rst.close();
+            connection.close();
+            }
+        catch(Exception ep)
+        {
+            ep.printStackTrace();
+        }
+    }
+    public void searchindatabase()
+    {
+        try{
+            Connection connection=getConnection();
+            int tempaccountnum=Integer.parseInt(telleraccountnumbertextfield.getText());
+            PreparedStatement pst= connection.prepareStatement("Select AccountNum,ClientFirstName,ClientMiddleName," +
+                    "ClientLastName,ClientCitizenshipNum,ClientAmount from clientpersonalinfo where isdeleted='0' AND AccountNum='"+tempaccountnum+"'");
+            ResultSet rst=pst.executeQuery();
+            if(!rst.isBeforeFirst())
+            {
+                JOptionPane.showMessageDialog(Teller.this, String.format("No Client Found For The Client Details Entered. Enter Client Details Again!"),"Database Error",JOptionPane.ERROR_MESSAGE);
+                tellerfirstnametextfield.setText("");
+                tellerlastnametextfield.setText("");
+                tellermiddlenametextfield.setText("");
+                telleraccountnumbertextfield.setText("");
+                tellerfirstnametextfield.requestFocus();
+                showallintable();
+            }
+            else{
+                tellerclientinfotable.setModel(DbUtils.resultSetToTableModel(rst));
+            }
+            }
+        catch(Exception ep)
+        {
+            ep.printStackTrace();
+        }
+    }
 
     public void checkAccountNumber() {
         try {
-            System.out.println("entering the check");
-            String firstname = firstField.getText();
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/clientdatabase", "root", "");
-            int accountnumber=Integer.parseInt(accountNumberField.getText());
+            String firstname = tellerfirstnametextfield.getText();
+            Connection con=getConnection();
+            int accountnumber=Integer.parseInt(telleraccountnumbertextfield.getText());
             PreparedStatement pst2 = con.prepareStatement
                     ("Select ClientFirstName FROM clientpersonalinfo where isDeleted='0' AND AccountNum='"+accountnumber+"'");
             ResultSet rst2 =pst2.executeQuery();
@@ -274,6 +294,7 @@ txtEnterName.addFocusListener(new FocusListener() {
 
                 if (firstname.equals(rst2.getString("ClientFirstName"))) {
                     Teller2 ts = new Teller2(accountnumber);
+                    setVisible(false);
                     System.out.println("successful !!");
                 }
                 else {
@@ -284,8 +305,10 @@ txtEnterName.addFocusListener(new FocusListener() {
                 JOptionPane.showMessageDialog(Teller.this, String.format("Please provide valid information"));
             }
 
-        }catch(Exception e) {
-            System.out.println("Exception occured");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
         }
     }
 }
