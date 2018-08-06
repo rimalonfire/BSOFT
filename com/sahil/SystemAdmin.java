@@ -22,7 +22,9 @@ public class SystemAdmin extends JFrame implements ActionListener {
     private JButton systemadmincreateusernamebutton;
     private JButton systemadminsearchbutton;
     private JScrollPane systemadminscrollpane;
+    private JLabel systemadminlogo;
     public SystemAdmin() {
+        setTitle("System Administrator");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 745, 541);
         systemadminframepanel = new JPanel();
@@ -61,6 +63,12 @@ public class SystemAdmin extends JFrame implements ActionListener {
         systemadminemployeeIDtextfield.setForeground(new Color(0, 102, 153));
         systemadminemployeeIDtextfield.setFont(new Font("Tahoma", Font.ITALIC, 16));
         systemadminemployeeIDtextfield.setColumns(10);
+        systemadminlogo=new JLabel("");
+        systemadminlogo.setHorizontalAlignment(SwingConstants.CENTER);
+        systemadminlogo.setIcon(new ImageIcon("B:\\BSoft\\src\\com\\sahil\\BSOFTLogo.png"));
+        systemadminlogo.setBounds(35,137,146,149);
+        systemadminsearchframepanel.add(systemadminlogo);
+
         searchSeparator = new JSeparator();
         searchSeparator.setBounds(20, 84, 219, 2);
         systemadminsearchframepanel.add(searchSeparator);

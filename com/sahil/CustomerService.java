@@ -39,6 +39,7 @@ public class CustomerService extends JFrame implements ActionListener {
     private JTable detailtable;
     private JScrollPane deletetablescrollpane;
     private JScrollPane detailtablescrollpane;
+    private JLabel deleteiconlogo;
     //create frame and design in it
     public CustomerService() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -290,6 +291,13 @@ public class CustomerService extends JFrame implements ActionListener {
         deleteFrameSubPanel.add(btnSearch);
         btnSearch.setForeground(new Color(0, 153, 153));
         btnSearch.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
+
+        deleteiconlogo=new JLabel("");
+        deleteiconlogo.setHorizontalAlignment(SwingConstants.CENTER);
+        deleteiconlogo.setIcon(new ImageIcon("B:\\BSoft\\src\\com\\sahil\\BSOFTLogo.png"));
+        deleteiconlogo.setBounds(30,108,177,149);
+        deleteFrameSubPanel.add(deleteiconlogo);
+
 
         JButton btnBack = new JButton("Back");
         btnBack.setBounds(144, 400, 93, 35);
