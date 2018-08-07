@@ -1,8 +1,11 @@
 package com.sahil;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class Login extends JFrame
 {
@@ -54,7 +57,7 @@ public class Login extends JFrame
         lblUsername.setBounds(21, 26, 189, 33);
         secondSubPanel.add(lblUsername);
 
-        loginusernametextfield = new JTextField();
+        loginusernametextfield = new JTextField("Username");
         loginusernametextfield.setFont(new Font("Sylfaen", Font.PLAIN, 23));
         loginusernametextfield.setText("");
         loginusernametextfield.setBackground(new Color(255, 255, 255));
@@ -64,7 +67,7 @@ public class Login extends JFrame
         secondSubPanel.add(loginusernametextfield);
         loginusernametextfield.setColumns(10);
 
-        loginpasswordtextfield = new JPasswordField();
+        loginpasswordtextfield = new JPasswordField("");
         loginpasswordtextfield.setBackground(new Color(255, 255, 255));
         loginpasswordtextfield.setToolTipText("");
         loginpasswordtextfield.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -106,6 +109,20 @@ public class Login extends JFrame
         labelCopyright.setFont(new Font("Sylfaen", Font.PLAIN, 15));
         labelCopyright.setBounds(330, 436, 305, 27);
         getContentPane().add(labelCopyright);
+        loginusernametextfield.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent arg0) {
+                if(loginusernametextfield.getText().equals("Username")) {
+                    loginusernametextfield.setText("");
+                }
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+                if(loginusernametextfield.getText().equals("")) {
+                    loginusernametextfield.setText("Username");
+                }
+            }
+        });
         loginbtn1.addActionListener(this::actionPerformed);
         loginexitbtn1.addActionListener(this::actionPerformed);
         loginpasswordtextfield.requestFocus(false);

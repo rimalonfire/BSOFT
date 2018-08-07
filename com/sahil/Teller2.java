@@ -1,18 +1,31 @@
 package com.sahil;
-
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
 public class Teller2 extends JFrame {
-    private JTextField withdrawTextfield;
+
+    private JPanel framePanel;
+    private JPanel frameSubPanel;
     private JTextField depositeTextfield;
-    private JPanel telpanel2;
-    private JLabel TellerSecondLabel1;
+    private JTextField withdrawTextfield;
     private int received_acc_from_TellerFirst;
+    private JLabel TellerSecondLabel1;
+    private JLabel ClientName;
+    private JLabel contact;
+    private JLabel dob ;
+    private JLabel city;
+    private JLabel sx;
+    private JLabel warningTextfiled;
+    private JComboBox comboBox;
 
 
+
+    /**
+     * Launch the application.
+     */
     public Teller2(int a) {
         received_acc_from_TellerFirst = a;
         setAlwaysOnTop(true);
@@ -22,37 +35,129 @@ public class Teller2 extends JFrame {
     }
 
     public void itstransactionframe() {
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("logIn");
-        setUndecorated(true);
-        setResizable(false);
-        setBounds(100, 100, 723, 498);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 745, 541);
+        framePanel = new JPanel();
+        framePanel.setBackground(new Color(0, 102, 153));
+        //framePanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(framePanel);
+        framePanel.setLayout(null);
 
-        telpanel2 = new JPanel();
-        telpanel2.setForeground(Color.GREEN);
-        telpanel2.setBackground(new Color(51,102,153));
-        telpanel2.setLayout(null);
-        getContentPane().add(telpanel2);
+        frameSubPanel = new JPanel();
+        frameSubPanel.setBackground(new Color(0, 153, 153));
+        frameSubPanel.setBounds(0, 0, 274, 502);
+        framePanel.add(frameSubPanel);
+        frameSubPanel.setLayout(null);
+
+        JLabel lblClientInfo = new JLabel("Client Info ");
+        lblClientInfo.setForeground(Color.WHITE);
+        lblClientInfo.setFont(new Font("Sylfaen", Font.PLAIN, 30));
+        lblClientInfo.setBounds(5, 227, 191, 34);
+        frameSubPanel.add(lblClientInfo);
+
+        JLabel lblName = new JLabel("Name:");
+        lblName.setForeground(Color.WHITE);
+        lblName.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
+        lblName.setBounds(5, 286, 67, 25);
+        frameSubPanel.add(lblName);
+
+        JLabel lblDateOfBirth = new JLabel("Date of birth :");
+        lblDateOfBirth.setForeground(Color.WHITE);
+        lblDateOfBirth.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
+        lblDateOfBirth.setBounds(5, 323, 121, 25);
+        frameSubPanel.add(lblDateOfBirth);
+
+        JLabel lblCity = new JLabel("Sex :");
+        lblCity.setForeground(Color.WHITE);
+        lblCity.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
+        lblCity.setBounds(5, 364, 53, 25);
+        frameSubPanel.add(lblCity);
+
+        JLabel lblContact = new JLabel("Contact :");
+        lblContact.setForeground(Color.WHITE);
+        lblContact.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
+        lblContact.setBounds(5, 445, 87, 25);
+        frameSubPanel.add(lblContact);
+
+        JSeparator separator = new JSeparator();
+        separator.setBounds(5, 254, 141, 2);
+        frameSubPanel.add(separator);
+
+        JLabel lblSex = new JLabel("City :");
+        lblSex.setForeground(Color.WHITE);
+        lblSex.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
+        lblSex.setBounds(5, 408, 53, 25);
+        frameSubPanel.add(lblSex);
+
+        JLabel city = new JLabel();
+        city.setForeground(Color.WHITE);
+        city.setFont(new Font("Tahoma", Font.ITALIC, 16));
+        city.setBounds(59, 413, 215, 20);
+        frameSubPanel.add(city);
+
+        JLabel TellerSecondLabel1 = new JLabel();
+        TellerSecondLabel1.setForeground(Color.WHITE);
+        TellerSecondLabel1.setFont(new Font("Tahoma", Font.PLAIN, 34));
+        TellerSecondLabel1.setBounds(309, 82, 391, 56);
+        framePanel.add(TellerSecondLabel1);
+
+        JLabel labelHelp = new JLabel("Help");
+        labelHelp.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent arg0) {
+
+            }
+        });
+        labelHelp.setForeground(Color.WHITE);
+        labelHelp.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+        labelHelp.setBounds(680, 6, 43, 25);
+        labelHelp.setCursor(new Cursor(HAND_CURSOR));
+        framePanel.add(labelHelp);
+
+        JSeparator separatorHelp = new JSeparator();
+        separatorHelp.setBounds(678, 24, 35, 2);
+        framePanel.add(separatorHelp);
+
+        setVisible(true);
+
+    }
 
 
+    public void topinfo() {
 
-        JLabel lblNewLabel = new JLabel("CHOOSE OPTION:");
-        lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 13));
-        lblNewLabel.setForeground(Color.WHITE);
-        lblNewLabel.setBounds(236, 223, 128, 14);
-        telpanel2.add(lblNewLabel);
+        TellerSecondLabel1 = new JLabel();
+        TellerSecondLabel1.setForeground(Color.WHITE);
+        TellerSecondLabel1.setFont(new Font("Sylfaen", Font.BOLD | Font.PLAIN, 34));
+        TellerSecondLabel1.setBounds(286, 68, 427, 56);
+
+        framePanel.add(TellerSecondLabel1);
+
+        JPanel panel = new JPanel();
+        panel.setBorder(new LineBorder(new Color(0, 153, 153), 6));
+        panel.setBackground(Color.WHITE);
+        panel.setBounds(309, 171, 391, 282);
+        framePanel.add(panel);
+        panel.setLayout(null);
+
+        JLabel lblChooseOption = new JLabel("Choose option :");
+        lblChooseOption.setBounds(10, 33, 153, 25);
+        panel.add(lblChooseOption);
+        lblChooseOption.setForeground(new Color(0, 102, 153));
+        lblChooseOption.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
+        String[] option = { "SELECT","WITHDRAW", "DEPOSIT" };
+        comboBox = new JComboBox(option);
+        comboBox.setBounds(175, 31, 193, 37);
+        panel.add(comboBox);
 
 
-
-
-
-        JLabel warningTextfiled = new JLabel("");
-        warningTextfiled.setFont(new Font("Monotype Corsiva", Font.PLAIN, 15));
-        warningTextfiled.setForeground(Color.WHITE);
-        warningTextfiled.setBounds(326, 331, 304, 14);
-        telpanel2.add(warningTextfiled);
+        JLabel lblDeposit = new JLabel("Deposit :");
+        lblDeposit.setBounds(73, 112, 90, 25);
+        panel.add(lblDeposit);
+        lblDeposit.setForeground(new Color(0, 102, 153));
+        lblDeposit.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 
         depositeTextfield = new JTextField();
+        depositeTextfield.setBounds(175, 114, 193, 29);
+        panel.add(depositeTextfield);
         depositeTextfield.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent eee) {
@@ -66,50 +171,18 @@ public class Teller2 extends JFrame {
                 }
             }
         });
-        depositeTextfield.setBounds(374, 286, 202, 29);
         depositeTextfield.setEnabled(false);
-        telpanel2.add(depositeTextfield);
         depositeTextfield.setColumns(10);
 
-
-
-        String[] option = { "SELECT","WITHDRAW", "DEPOSITE" };
-        JComboBox comboBox = new JComboBox(option);
-        comboBox.setBounds(374, 221, 202, 34);
-        telpanel2.add(comboBox);
-
-
-
-
-
-        Integer[] saal = new Integer[60];
-        int ini=2018;
-        for(int i=0;i<50;i++){
-            saal[i]= ini;
-            ini++;
-        }
-
-
-
-        Integer[] mahina = new Integer[12];
-        int initi=1;
-        for(int i=0;i<12;i++){
-            mahina[i]= initi;
-            initi++;
-        }
-
-
-        Integer[] din = new Integer[31];
-        int init=1;
-        for(int i=0;i<31;i++){
-            din[i]= init;
-            init++;
-        }
-
-
-
+        JLabel lblWithdraw = new JLabel("Withdraw :");
+        lblWithdraw.setBounds(55, 153, 112, 25);
+        panel.add(lblWithdraw);
+        lblWithdraw.setForeground(new Color(0, 102, 153));
+        lblWithdraw.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 
         withdrawTextfield = new JTextField();
+        withdrawTextfield.setBounds(175, 155, 193, 29);
+        panel.add(withdrawTextfield);
         withdrawTextfield.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent evt) {
@@ -123,49 +196,85 @@ public class Teller2 extends JFrame {
                 }
             }
         });
-        withdrawTextfield.setBounds(374, 347, 202, 29);
-        withdrawTextfield.setColumns(10);
         withdrawTextfield.setEnabled(false);
-        telpanel2.add(withdrawTextfield);
+        withdrawTextfield.setColumns(10);
 
+        warningTextfiled = new JLabel("");
+        warningTextfiled.setBounds(64, 82, 304, 18);
+        panel.add(warningTextfiled);
+        warningTextfiled.setForeground(new Color(0, 102, 153));
+        warningTextfiled.setFont(new Font("Monotype Corsiva", Font.PLAIN, 16));
 
-
-        JLabel lblWithdraw = new JLabel("WITHDRAW:");
-        lblWithdraw.setForeground(Color.WHITE);
-        lblWithdraw.setFont(new Font("SansSerif", Font.BOLD, 13));
-        lblWithdraw.setBounds(272, 358, 128, 14);
-        telpanel2.add(lblWithdraw);
-
-        JLabel depositeLabel = new JLabel("DEPOSITE:");
-        depositeLabel.setForeground(Color.WHITE);
-        depositeLabel.setFont(new Font("SansSerif", Font.BOLD, 13));
-        depositeLabel.setBounds(272, 297, 92, 14);
-        telpanel2.add(depositeLabel);
-
-        JButton btnDeposite = new JButton("DEPOSITE");
-
-        btnDeposite.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+        JButton btnDeposite = new JButton("DEPOSIT");
+        btnDeposite.setBounds(27, 219, 128, 29);
+        panel.add(btnDeposite);
         btnDeposite.setForeground(new Color(0, 102, 153));
-        btnDeposite.setBackground(Color.LIGHT_GRAY);
-        btnDeposite.setBounds(448, 403, 128, 29);
+        btnDeposite.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
         btnDeposite.setEnabled(false);
-        telpanel2.add(btnDeposite);
+        btnDeposite.setBackground(Color.LIGHT_GRAY);
 
         JButton btnWithdraw = new JButton("WITHDRAW");
-
-        btnWithdraw.setBackground(Color.LIGHT_GRAY);
-        btnWithdraw.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+        btnWithdraw.setBounds(188, 219, 128, 29);
+        panel.add(btnWithdraw);
         btnWithdraw.setForeground(new Color(0, 102, 153));
-        btnWithdraw.setBounds(287, 403, 128, 29);
-        telpanel2.add(btnWithdraw);
+        btnWithdraw.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
         btnWithdraw.setEnabled(false);
+        btnWithdraw.setBackground(Color.LIGHT_GRAY);
 
-        JButton backBtn = new JButton("BACK");
-        backBtn.setSelectedIcon(new ImageIcon("C:\\Users\\adarsha\\Desktop\\download.png"));
-        backBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
+       JButton backBtn = new JButton("Back");
+       backBtn.setBounds(603, 465, 82, 29);
+        framePanel.add(backBtn);
         backBtn.setForeground(new Color(0, 102, 153));
-        backBtn.setBounds(611, 463, 79, 29);
-        telpanel2.add(backBtn);
+        backBtn.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+        backBtn.setEnabled(true);
+        backBtn.setBackground(Color.LIGHT_GRAY);
+
+        backBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               Teller tt = new Teller();
+                tt.setVisible(true);
+                setVisible(false);
+
+
+            }
+        } );
+
+
+        btnWithdraw.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+
+
+
+                if(comboBox.getSelectedItem().equals("WITHDRAW")) {
+                    if(withdrawTextfield.getText().equals("")) {
+                        JOptionPane.showMessageDialog(Teller2.this, String.format("PLEASE ENTER WITHDRAW AMOUNT"));
+                        withdrawTextfield.requestFocus();
+                    }
+                }
+                withdrawLogic();
+            }
+        });
+        btnDeposite.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+
+
+
+                if(comboBox.getSelectedItem().equals("DEPOSIT")) {
+
+                    if(depositeTextfield.getText().equals("")) {
+                        JOptionPane.showMessageDialog(Teller2.this, String.format("PLEASE ENTER DEPOSITE AMOUNT"));
+                        depositeTextfield.requestFocus();
+                    }
+                }
+
+                depositeLogic();
+            }
+        });
 
 
         comboBox.addItemListener(new ItemListener() {
@@ -198,124 +307,6 @@ public class Teller2 extends JFrame {
             }
         });
 
-
-        btnWithdraw.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-
-
-
-                if(comboBox.getSelectedItem().equals("WITHDRAW")) {
-                    if(withdrawTextfield.getText().equals("")) {
-                        JOptionPane.showMessageDialog(Teller2.this, String.format("PLEASE ENTER WITHDRAW AMOUNT"));
-                        withdrawTextfield.requestFocus();
-                    }
-                }
-                withdrawLogic();
-            }
-        });
-        btnDeposite.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-
-
-
-                if(comboBox.getSelectedItem().equals("DEPOSITE")) {
-
-                    if(depositeTextfield.getText().equals("")) {
-                        JOptionPane.showMessageDialog(Teller2.this, String.format("PLEASE ENTER DEPOSITE AMOUNT"));
-                        depositeTextfield.requestFocus();
-                    }
-                }
-
-                depositeLogic();
-            }
-        });
-
-
-
-        backBtn.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Teller tt = new Teller();
-                dispose();
-
-            }
-        } );
-
-
-
-
-
-        JButton btnExit = new JButton("EXIT");
-        btnExit.setForeground(new Color(0, 102, 153));
-        btnExit.setBounds(498, 461, 89, 31);
-        btnExit.setBorderPainted(false);
-        btnExit.setFocusPainted(false);
-        telpanel2.add(btnExit);
-
-
-
-        btnExit.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                dispose();
-
-
-            }
-        });
-
-
-        JLabel lblName = new JLabel("NAME:");
-        lblName.setFont(new Font("SansSerif", Font.BOLD, 15));
-        lblName.setForeground(new Color(255, 255, 255));
-        lblName.setBounds(10, 28, 53, 14);
-        telpanel2.add(lblName);
-
-
-        JLabel lblNewLabel_1 = new JLabel("DATE OF BIRTH:");
-        lblNewLabel_1.setForeground(Color.WHITE);
-        lblNewLabel_1.setFont(new Font("SansSerif", Font.BOLD, 15));
-        lblNewLabel_1.setBounds(10, 78, 123, 14);
-        telpanel2.add(lblNewLabel_1);
-
-
-        JLabel lblSex = new JLabel("SEX:");
-        lblSex.setForeground(Color.WHITE);
-        lblSex.setFont(new Font("SansSerif", Font.BOLD, 15));
-        lblSex.setBounds(10, 133, 63, 14);
-        telpanel2.add(lblSex);
-
-        JLabel lblCity = new JLabel("CITY:");
-        lblCity.setForeground(Color.WHITE);
-        lblCity.setFont(new Font("SansSerif", Font.BOLD, 15));
-        lblCity.setBounds(10, 183, 63, 14);
-        telpanel2.add(lblCity);
-
-        JLabel lblContact = new JLabel("CONTACT:");
-        lblContact.setForeground(Color.WHITE);
-        lblContact.setFont(new Font("SansSerif", Font.BOLD, 15));
-        lblContact.setBounds(10, 241, 104, 14);
-        telpanel2.add(lblContact);
-
-        setVisible(true);
-    }
-
-    public void topinfo() {
-
-        TellerSecondLabel1 = new JLabel();
-        TellerSecondLabel1.setForeground(Color.WHITE);
-        TellerSecondLabel1.setFont(new Font("Sylfaen", Font.BOLD | Font.ITALIC, 34));
-        TellerSecondLabel1.setBounds(261, 11, 452, 56);
-
-        telpanel2.add(TellerSecondLabel1);
-
-
-
         try {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -343,49 +334,42 @@ public class Teller2 extends JFrame {
     public void itsotherdetail() {
 
         try {
-            JLabel ClientName = new JLabel();
-            ClientName.setFont(new Font("Sylfaen", Font.ITALIC, 16));
+            ClientName = new JLabel();
+            ClientName.setFont(new Font("Sylfaen", Font.PLAIN, 16));
             ClientName.setForeground(Color.WHITE);
-            ClientName.setBounds(10, 53, 216, 14);
-            telpanel2.add(ClientName);
+            ClientName.setBounds(61, 290, 216, 25);
+            frameSubPanel.add(ClientName);
 
-
-
-            JLabel dob = new JLabel();
+            dob = new JLabel();
             dob.setForeground(Color.WHITE);
-            dob.setFont(new Font("Sylfaen", Font.ITALIC, 16));
-            dob.setBounds(10, 105, 155, 14);
-            telpanel2.add(dob);
-
-
-
-            JLabel sx = new JLabel();
-            sx.setFont(new Font("Sylfaen", Font.ITALIC, 16));
-            sx.setForeground(Color.WHITE);
-            sx.setBounds(10, 162, 142, 14);
-            telpanel2.add(sx);
-
-
+            dob.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+            dob.setBounds(122, 327, 155, 20);
+            frameSubPanel.add(dob);
 
             JLabel city = new JLabel();
             city.setForeground(Color.WHITE);
-            city.setFont(new Font("Sylfaen", Font.ITALIC, 16));
-            city.setBounds(10, 212, 155, 14);
-            telpanel2.add(city);
+            city.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+            city.setBounds(59, 413, 215, 20);
+            frameSubPanel.add(city);
 
 
-            JLabel contact = new JLabel();
+
+            contact = new JLabel();
             contact.setForeground(Color.WHITE);
-            contact.setFont(new Font("Sylfaen", Font.ITALIC, 16));
-            contact.setBounds(10, 267, 169, 20);
-            telpanel2.add(contact);
+            contact.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+            contact.setBounds(84, 450, 169, 20);
+            frameSubPanel.add(contact);
 
-            JPanel panel = new JPanel();
-            panel.setBackground(new Color(0, 153, 153));
-            panel.setBounds(0, 0, 231, 498);
-            telpanel2.add(panel);
+            sx = new JLabel();
+            sx.setForeground(Color.WHITE);
+            sx.setFont(new Font("Sylfaen", Font.ITALIC, 16));
+            sx.setBounds(72, 369, 202, 20);
+            frameSubPanel.add(sx);
 
-
+            JLabel logolabel = new JLabel("");
+            logolabel.setBounds(50, 33, 156, 152);
+            frameSubPanel.add(logolabel);
+            logolabel.setIcon(new ImageIcon("B:\\BSoft\\src\\com\\sahil\\BSOFTLogo.png"));
 
 
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -509,5 +493,4 @@ public class Teller2 extends JFrame {
 
     }
 }
-
 

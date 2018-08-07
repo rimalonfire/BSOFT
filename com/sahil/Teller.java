@@ -42,7 +42,7 @@ public class Teller extends JFrame {
         setContentPane(FramePanel);
         FramePanel.setLayout(null);
         ClientInfoPanel = new JPanel();
-
+        setTitle("Teller");
         FramePanel.add(ClientInfoPanel);
         ClientInfoPanel.setLayout(null);
         ClientInfoPanel.setBounds(0, 0, 723, 541);
@@ -249,9 +249,18 @@ public class Teller extends JFrame {
     }
     public void searchindatabase()
     {
+        int tempaccountnum=0;
         try{
             Connection connection=getConnection();
-            int tempaccountnum=Integer.parseInt(telleraccountnumbertextfield.getText());
+            try
+            {
+                tempaccountnum = Integer.parseInt(telleraccountnumbertextfield.getText());
+            }
+            catch (Exception ep)
+            {
+                JOptionPane.showMessageDialog(Teller.this,"Please Enter valid datatype(INTEGER) in Account Textfield.","Error",JOptionPane.ERROR_MESSAGE);
+            }
+
             PreparedStatement pst= connection.prepareStatement("Select AccountNum,ClientFirstName,ClientMiddleName," +
                     "ClientLastName,ClientCitizenshipNum,ClientAmount from clientpersonalinfo where isdeleted='0' AND AccountNum='"+tempaccountnum+"'");
             ResultSet rst=pst.executeQuery();
@@ -283,17 +292,11 @@ public class Teller extends JFrame {
             PreparedStatement pst2 = con.prepareStatement
                     ("Select ClientFirstName FROM clientpersonalinfo where isDeleted='0' AND AccountNum='"+accountnumber+"'");
             ResultSet rst2 =pst2.executeQuery();
-
-//			 while(!rst2.next()) {
-//	        	  JOptionPane.showMessageDialog(Teller.this, String.format("Account Number is invalid"));
-//	        	  break;
-//	          }
-
             if (rst2.next()) {
                 System.out.println("entered the while loop" + rst2.getString("ClientFirstName"));
-
                 if (firstname.equals(rst2.getString("ClientFirstName"))) {
                     Teller2 ts = new Teller2(accountnumber);
+                    ts.setVisible(true);
                     setVisible(false);
                     System.out.println("successful !!");
                 }
